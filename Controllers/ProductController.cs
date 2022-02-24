@@ -38,4 +38,9 @@ public class ProductController : ControllerBase
         _iproductservice.Delete(id);
     }
 
+    // id co thuoc tinh key => khong nhap nhung id bi xoa
+    [HttpPost("ProductCategory")]
+    public void Add(List<ProductCategoryModel> list){
+        _iproductservice.Add(list);
+    }
 }

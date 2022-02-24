@@ -9,5 +9,7 @@ namespace efcore2.Repository
         void Create(ProductModel product);
         void Update(int id, ProductModel product);
         void Delete(int id);
+
+        void Add(List<ProductCategoryModel> list);
     }
 }

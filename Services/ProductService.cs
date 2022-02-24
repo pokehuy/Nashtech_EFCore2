@@ -30,5 +30,9 @@ namespace efcore2.Services
         public void Delete(int id){
             _iproductrepo.Delete(id);
         }
+
+        public void Add(List<ProductCategoryModel> list){
+            _iproductrepo.Add(list);
+        }
     }
 }

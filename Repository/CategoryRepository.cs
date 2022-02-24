@@ -17,20 +17,39 @@ namespace efcore2.Repository
             return _dbcontext.Categories.FirstOrDefault(c => c.CategoryId == id);
         }
         public void Create(CategoryModel category){
-            _dbcontext.Categories.Add(category);
-            _dbcontext.SaveChanges();
+            var transaction = _dbcontext.Database.BeginTransaction();
+            try {
+                _dbcontext.Categories.Add(category);
+                _dbcontext.SaveChanges();
+                transaction.Commit();
+            } catch (Exception e) {
+                
+            }
         }
         public void Update(int id, CategoryModel category){
-            var ctg = _dbcontext.Categories.FirstOrDefault(c => c.CategoryId == id);
-            if(ctg != null){
-                ctg.CategoryName = category.CategoryName;
+            var transaction = _dbcontext.Database.BeginTransaction();
+            try {
+                var ctg = _dbcontext.Categories.FirstOrDefault(c => c.CategoryId == id);
+                if(ctg != null){
+                    ctg.CategoryName = category.CategoryName;
+                }
+                _dbcontext.SaveChanges();
+                transaction.Commit();
+            } catch (Exception e) {
+                
             }
         }
         public void Delete(int id){
-            var ctg = _dbcontext.Categories.FirstOrDefault(c => c.CategoryId == id);
-            if(ctg != null){
-                _dbcontext.Categories.Remove(ctg);
-                _dbcontext.SaveChanges();
+            var transaction = _dbcontext.Database.BeginTransaction();
+            try {
+                var ctg = _dbcontext.Categories.FirstOrDefault(c => c.CategoryId == id);
+                if(ctg != null){
+                    _dbcontext.Categories.Remove(ctg);
+                    _dbcontext.SaveChanges();
+                }
+                transaction.Commit();
+            } catch (Exception e) {
+                
             }
         }
     }

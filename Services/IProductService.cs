@@ -13,5 +13,6 @@ namespace efcore2.Services
         void Update(int id, ProductModel product);
 
         void Delete(int id);
+        void Add(List<ProductCategoryModel> list);
     }
 }

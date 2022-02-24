@@ -122,18 +122,11 @@ namespace efcore2.Migrations
 
             modelBuilder.Entity("efcore2.Models.ProductModel", b =>
                 {
-                    b.HasOne("efcore2.Models.CategoryModel", "Category")
-                        .WithMany("Products")
+                    b.HasOne("efcore2.Models.CategoryModel", null)
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("efcore2.Models.CategoryModel", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
